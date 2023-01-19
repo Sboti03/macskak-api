@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import Cat from './cat.tdo';
+import Cat from './cat';
+import CatTdo from './cat.tdo';
+
 import db from './db';
 
 @Injectable()
@@ -37,5 +39,11 @@ export class DbManagerService {
     async deleteCatById(id: number) {
         let sql = 'DELETE FROM macskak WHERE id = ?'
         await db.execute(sql, [id])
+    }
+
+    async createCat(cat: CatTdo) {
+        let sql = 'INSERT INTO macskak (suly, szem_szin) VALUES (?, ?)'
+        const [result]: any = await db.execute(sql, [cat.suly, cat.szem_szin])
+        return result.insertId
     }
 }

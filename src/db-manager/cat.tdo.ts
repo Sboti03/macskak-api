@@ -1,5 +1,4 @@
-export default class Cat {
-    id: number
-    weight: number
-    eyeColor: string
+export default class CatTdo {
+    suly: number
+    szem_szin: string
 }
